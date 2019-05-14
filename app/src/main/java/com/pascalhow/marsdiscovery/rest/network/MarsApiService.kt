@@ -1,6 +1,6 @@
-package com.pascalhow.planetmars.rest.network
+package com.pascalhow.marsdiscovery.rest.network
 
-import com.pascalhow.planetmars.rest.model.MarsSearchResults
+import com.pascalhow.marsdiscovery.rest.model.MarsSearchResults
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
