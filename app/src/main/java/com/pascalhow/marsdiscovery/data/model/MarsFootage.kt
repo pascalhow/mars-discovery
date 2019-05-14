@@ -1,4 +1,4 @@
-package com.pascalhow.planetmars.data.model
+package com.pascalhow.marsdiscovery.data.model
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

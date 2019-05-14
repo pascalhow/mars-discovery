@@ -1,8 +1,8 @@
-package com.pascalhow.planetmars.data.repo
+package com.pascalhow.marsdiscovery.data.repo
 
 import android.arch.lifecycle.LiveData
-import com.pascalhow.planetmars.activities.extensions.toLiveData
-import com.pascalhow.planetmars.data.model.MarsFootage
+import com.pascalhow.marsdiscovery.data.model.MarsFootage
+import com.pascalhow.marsdiscovery.extensions.toLiveData
 
 class MarsRepository(private val marsDataStoreFactory: MarsDataStoreFactory) {
 

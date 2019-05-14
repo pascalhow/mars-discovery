@@ -1,11 +1,11 @@
-package com.pascalhow.planetmars.data.repo
+package com.pascalhow.marsdiscovery.data.repo
 
 import android.content.Context
-import com.pascalhow.planetmars.activities.extensions.changeFormat
-import com.pascalhow.planetmars.data.model.MarsFootage
-import com.pascalhow.planetmars.data.db.MarsFootageDao
-import com.pascalhow.planetmars.data.db.MarsFootageDatabase
-import com.pascalhow.planetmars.rest.network.RestClient
+import com.pascalhow.marsdiscovery.data.db.MarsFootageDao
+import com.pascalhow.marsdiscovery.data.db.MarsFootageDatabase
+import com.pascalhow.marsdiscovery.data.model.MarsFootage
+import com.pascalhow.marsdiscovery.extensions.changeFormat
+import com.pascalhow.marsdiscovery.rest.network.RestClient
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -1,8 +1,8 @@
-package com.pascalhow.planetmars.data.repo
+package com.pascalhow.marsdiscovery.data.repo
 
 import android.content.Context
-import com.pascalhow.planetmars.utils.NetworkStatusProvider
-import com.pascalhow.planetmars.rest.network.RestClient
+import com.pascalhow.marsdiscovery.rest.network.RestClient
+import com.pascalhow.marsdiscovery.utils.NetworkStatusProvider
 
 class MarsDataStoreFactory(
     private val context: Context,
