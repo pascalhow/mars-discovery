@@ -1,10 +1,10 @@
-package com.pascalhow.planetmars.data.db
+package com.pascalhow.marsdiscovery.data.db
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.pascalhow.planetmars.data.model.MarsFootage
+import com.pascalhow.marsdiscovery.data.model.MarsFootage
 import io.reactivex.Flowable
 
 @Dao

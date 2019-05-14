@@ -1,10 +1,10 @@
-package com.pascalhow.planetmars.data.db
+package com.pascalhow.marsdiscovery.data.db
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import com.pascalhow.planetmars.data.model.MarsFootage
+import com.pascalhow.marsdiscovery.data.model.MarsFootage
 
 @Database(entities = [MarsFootage::class], version = 1)
 abstract class MarsFootageDatabase : RoomDatabase() {
