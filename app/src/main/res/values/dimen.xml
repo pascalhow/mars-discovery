@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_medium_margin">16dp</dimen>
+    <dimen name="card_view_default_elevation">8dp</dimen>
+    <dimen name="card_view_default_corner_radius">4dp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+
+    <!-- Item Mars Footage -->
+    <dimen name="mars_text_size_small">@dimen/text_size_small</dimen>
+    <dimen name="mars_text_size_medium">@dimen/text_size_medium</dimen>
+    <dimen name="mars_card_view_elevation">@dimen/cardview_default_elevation</dimen>
+    <dimen name="mars_card_view_corner_radius">@dimen/card_view_default_corner_radius</dimen>
+</resources>
