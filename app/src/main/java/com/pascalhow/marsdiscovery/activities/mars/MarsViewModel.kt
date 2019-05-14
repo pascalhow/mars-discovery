@@ -1,10 +1,10 @@
-package com.pascalhow.planetmars.activities.mars
+package com.pascalhow.marsdiscovery.activities.mars
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.pascalhow.planetmars.data.model.MarsFootage
-import com.pascalhow.planetmars.data.repo.MarsRepository
+import com.pascalhow.marsdiscovery.data.model.MarsFootage
+import com.pascalhow.marsdiscovery.data.repo.MarsRepository
 
 class MarsViewModel(repository: MarsRepository) : ViewModel() {
 

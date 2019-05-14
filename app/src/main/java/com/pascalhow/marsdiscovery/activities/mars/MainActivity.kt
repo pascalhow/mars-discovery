@@ -1,12 +1,16 @@
-package com.pascalhow.marsdiscovery
+package com.pascalhow.marsdiscovery.activities.mars
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import com.pascalhow.marsdiscovery.activities.mars.MarsFootageAdapter
-import com.pascalhow.marsdiscovery.activities.mars.MarsViewModel
-import com.pascalhow.marsdiscovery.activities.mars.MarsViewModelFactory
+import com.pascalhow.marsdiscovery.R
+import com.pascalhow.marsdiscovery.data.model.MarsFootage
+import com.pascalhow.marsdiscovery.data.repo.MarsDataStoreFactory
+import com.pascalhow.marsdiscovery.data.repo.MarsRepository
+import com.pascalhow.marsdiscovery.utils.NetworkStatusProvider
+import kotlinx.android.synthetic.main.activity_main.mars_footage_recycler_view as recyclerView
 
 class MainActivity : AppCompatActivity() {
 
