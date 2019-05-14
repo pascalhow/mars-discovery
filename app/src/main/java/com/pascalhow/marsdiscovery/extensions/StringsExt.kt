@@ -1,4 +1,4 @@
-package com.pascalhow.planetmars.activities.extensions
+package com.pascalhow.marsdiscovery.extensions
 
 import java.text.SimpleDateFormat
 import java.util.*
