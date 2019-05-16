@@ -80,4 +80,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //  Mockito
+    def mockitoKotlinVersion = "1.5.0"
+    def mockitoVersion = "2.13.0"
+    testImplementation ("com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlinVersion"){
+        exclude group: 'org.mockito', module: 'mockito-core'
+    }
+
+    testImplementation "android.arch.core:core-testing:$lifecycleVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
 }
