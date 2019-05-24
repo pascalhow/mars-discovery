@@ -1,13 +1,12 @@
 package com.pascalhow.marsdiscovery.data.repo
 
-import android.arch.lifecycle.LiveData
 import com.pascalhow.marsdiscovery.data.model.MarsFootage
-import com.pascalhow.marsdiscovery.extensions.toLiveData
+import io.reactivex.Flowable
 
 class MarsRepository(private val marsDataStoreFactory: MarsDataStoreFactory) {
 
-    fun getFootage(planet: String, mediaType: String): LiveData<List<MarsFootage>> {
+    fun getFootage(planet: String, mediaType: String): Flowable<List<MarsFootage>> {
         val marsDataStore = marsDataStoreFactory.create()
-        return marsDataStore.getFootage(planet, mediaType).toLiveData()
+        return marsDataStore.getFootage(planet, mediaType)
     }
 }
