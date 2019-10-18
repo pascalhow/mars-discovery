@@ -1,6 +1,9 @@
 package com.pascalhow.marsdiscovery.rest.model
 
 import com.google.gson.annotations.SerializedName
+import com.pascalhow.marsdiscovery.data.model.MarsFootage
+import com.pascalhow.marsdiscovery.data.repo.MarsDataStore
+import com.pascalhow.marsdiscovery.extensions.changeFormat
 
 class MarsSearchResults {
 
@@ -29,6 +32,16 @@ class Items {
 
     @SerializedName("links")
     var links: Array<Links>? = null
+
+    fun toMarsFootage() =
+        MarsFootage(
+            links!![0].href,
+            data!![0].description,
+            data!![0].dateCreated!!.changeFormat(
+                MarsDataStore.OLD_TIME_FORMAT,
+                MarsDataStore.NEW_TIME_FORMAT
+            )
+        )
 
     override fun toString(): String {
         return "ClassPojo [data = $data, links = $links]"

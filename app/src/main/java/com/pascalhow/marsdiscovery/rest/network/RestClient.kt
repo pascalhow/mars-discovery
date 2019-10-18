@@ -1,7 +1,7 @@
 package com.pascalhow.marsdiscovery.rest.network
 
 import com.pascalhow.marsdiscovery.rest.model.MarsSearchResults
-import io.reactivex.Observable
+import retrofit2.Call
 
 object RestClient {
 
@@ -9,7 +9,7 @@ object RestClient {
         MarsApiService.create()
     }
 
-    fun search(planet: String, mediaType: String): Observable<MarsSearchResults> {
+    fun search(planet: String, mediaType: String): Call<MarsSearchResults> {
         return marsApiService.request(planet, mediaType)
     }
 }

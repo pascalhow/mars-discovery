@@ -1,16 +1,14 @@
 package com.pascalhow.marsdiscovery.data.repo
 
+import android.accounts.NetworkErrorException
 import android.content.Context
 import com.pascalhow.marsdiscovery.data.db.MarsFootageDao
 import com.pascalhow.marsdiscovery.data.db.MarsFootageDatabase
 import com.pascalhow.marsdiscovery.data.model.MarsFootage
-import com.pascalhow.marsdiscovery.extensions.changeFormat
+import com.pascalhow.marsdiscovery.rest.model.Items
+import com.pascalhow.marsdiscovery.rest.model.MarsSearchResults
 import com.pascalhow.marsdiscovery.rest.network.RestClient
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import java.util.*
+import retrofit2.Call
 
 abstract class MarsDataStore(context: Context) {
 
@@ -22,7 +20,7 @@ abstract class MarsDataStore(context: Context) {
         marsFootageDao = marsFootageDatabase.marsFootageDao()
     }
 
-    abstract fun getFootage(planet: String, mediaType: String): Flowable<List<MarsFootage>>
+    abstract fun getFootage(planet: String, mediaType: String): List<MarsFootage>
 
     companion object {
         const val NEW_TIME_FORMAT = "dd MMM yyyy"
@@ -30,36 +28,40 @@ abstract class MarsDataStore(context: Context) {
     }
 }
 
-class DiskMarsDataStore(context: Context) : MarsDataStore(context) {
+//class DiskMarsDataStore(context: Context) : MarsDataStore(context) {
+//
+//    override suspend fun getFootage(planet: String, mediaType: String): Call<List<MarsFootage>> {
+//        return marsFootageDao.getAll()
+//    }
+//}
 
-    override fun getFootage(planet: String, mediaType: String): Flowable<List<MarsFootage>> {
-        return marsFootageDao.getAll()
+class CloudMarsDataStore(context: Context, private val restClient: RestClient) :
+    MarsDataStore(context) {
+
+    override fun getFootage(
+        planet: String,
+        mediaType: String
+    ): List<MarsFootage> {
+        return request(
+            restClient.search(planet, mediaType),
+            emptyList()
+        ) { it -> it.map { it.toMarsFootage() } }
     }
-}
 
-class CloudMarsDataStore(context: Context, private val restClient: RestClient) : MarsDataStore(context) {
+    private fun request(
+        call: Call<MarsSearchResults>,
+        default: List<Items>,
+        transform: (List<Items>) -> List<MarsFootage>
+    ): List<MarsFootage> {
 
-    override fun getFootage(planet: String, mediaType: String): Flowable<List<MarsFootage>> {
-        return restClient.search(planet, mediaType)
-            .map { result ->
-                Arrays.asList(result.collection?.items)
-                result.collection?.items?.forEach { item ->
-                    marsFootageList.add(
-                        MarsFootage(
-                            item.links!![0].href,
-                            item.data!![0].description,
-                            item.data!![0].dateCreated!!.changeFormat(
-                                OLD_TIME_FORMAT,
-                                NEW_TIME_FORMAT
-                            )
-                        )
-                    )
-                }
-                marsFootageDao.insert(marsFootageList)
-                marsFootageList.toList()
+        val response = call.execute()
+
+        return when (response.isSuccessful) {
+            true -> {
+                val items = response.body()?.collection?.items?.toList()
+                transform(items ?: default)
             }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .toFlowable(BackpressureStrategy.LATEST)
+            false -> throw NetworkErrorException()
+        }
     }
 }
