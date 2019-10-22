@@ -41,8 +41,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val schedulersProvider = SchedulersProvider()
-        val marsFootageUseCase = MarsFootageUseCase(repository, schedulersProvider)
+        val marsFootageUseCase = MarsFootageUseCase(repository)
         val viewModelFactory = MarsViewModelFactory(marsFootageUseCase)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MarsViewModel::class.java)

@@ -8,44 +8,41 @@ import com.pascalhow.marsdiscovery.data.model.MarsFootage
 import com.pascalhow.marsdiscovery.data.repo.MarsRepository
 import com.pascalhow.marsdiscovery.data.resource.Resource
 import com.pascalhow.marsdiscovery.data.resource.ResourceState
+import com.pascalhow.marsdiscovery.domain.UseCase
 import io.reactivex.subscribers.DisposableSubscriber
 
 class MarsViewModel(
     private val marsFootageUseCase: MarsFootageUseCase
 ) : ViewModel() {
 
-    private val marsFootageListLiveData: MutableLiveData<Resource<List<MarsFootage>>> = MutableLiveData()
+    private val marsFootageListLiveData: MutableLiveData<Resource<List<MarsFootage>>> =
+        MutableLiveData()
 
     init {
         fetchMarsFootageList()
     }
 
-    fun getMarsFootageListLiveData(): LiveData<Resource<List<MarsFootage>>> = marsFootageListLiveData
+    fun getMarsFootageListLiveData(): LiveData<Resource<List<MarsFootage>>> =
+        marsFootageListLiveData
 
-    fun fetchMarsFootageList() {
+    private fun fetchMarsFootageList() {
         marsFootageListLiveData.postValue(Resource(ResourceState.Loading, null, null))
-        marsFootageUseCase.execute(MarsFootageSubscriber())
+
+        marsFootageUseCase.execute(UseCase.None) {
+            marsFootageListLiveData.postValue(
+                Resource(
+                    ResourceState.Success,
+                    it,
+                    null
+                )
+            )
+        }
     }
 
     fun dispose() {
-        marsFootageUseCase.dispose()
+        marsFootageUseCase.cleanUp()
     }
 
-    inner class MarsFootageSubscriber : DisposableSubscriber<List<MarsFootage>>() {
-
-        override fun onComplete() {
-            //  no-op
-        }
-
-        override fun onNext(marsFootageList: List<MarsFootage>) {
-            marsFootageListLiveData.postValue(Resource(ResourceState.Success, marsFootageList, null))
-        }
-
-        override fun onError(exception: Throwable) {
-            marsFootageListLiveData.postValue(Resource(ResourceState.Error, null, exception.message))
-        }
-
-    }
 }
 
 class MarsViewModelFactory(

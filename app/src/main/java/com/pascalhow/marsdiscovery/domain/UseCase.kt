@@ -14,5 +14,12 @@ abstract class UseCase<out Type, in Params> where Type : Any {
         coroutineScope.launch(Dispatchers.Main) { onResult(job.await()) }
     }
 
-    class None
+    fun cleanUp() {
+        parentJob.apply {
+            cancelChildren()
+            cancel()
+        }
+    }
+
+    object None
 }
