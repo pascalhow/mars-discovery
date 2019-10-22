@@ -26,8 +26,14 @@ class MarsViewModel(
     private fun fetchMarsFootageList() {
         marsFootageListLiveData.postValue(Resource(ResourceState.Loading, null, null))
 
-        marsFootageUseCase.execute(UseCase.None) {
-            marsFootageListLiveData.postValue(Resource(ResourceState.Success, it, null))
+        marsFootageUseCase.execute(UseCase.None) { marsFootageList ->
+            marsFootageListLiveData.postValue(
+                Resource(
+                    ResourceState.Success,
+                    marsFootageList,
+                    null
+                )
+            )
         }
     }
 
