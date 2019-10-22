@@ -5,7 +5,6 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.pascalhow.marsdiscovery.data.model.MarsFootage
-import io.reactivex.Flowable
 
 @Dao
 interface MarsFootageDao {

@@ -5,11 +5,9 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.pascalhow.marsdiscovery.data.model.MarsFootage
-import com.pascalhow.marsdiscovery.data.repo.MarsRepository
 import com.pascalhow.marsdiscovery.data.resource.Resource
 import com.pascalhow.marsdiscovery.data.resource.ResourceState
 import com.pascalhow.marsdiscovery.domain.UseCase
-import io.reactivex.subscribers.DisposableSubscriber
 
 class MarsViewModel(
     private val marsFootageUseCase: MarsFootageUseCase
