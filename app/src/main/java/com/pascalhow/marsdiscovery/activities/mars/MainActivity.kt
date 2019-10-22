@@ -15,7 +15,6 @@ import com.pascalhow.marsdiscovery.data.repo.MarsDataStoreFactory
 import com.pascalhow.marsdiscovery.data.repo.MarsRepository
 import com.pascalhow.marsdiscovery.data.resource.ResourceState
 import com.pascalhow.marsdiscovery.utils.NetworkStatusProvider
-import com.pascalhow.marsdiscovery.utils.SchedulersProvider
 import kotlinx.android.synthetic.main.activity_main.mars_footage_recycler_view as recyclerView
 import kotlinx.android.synthetic.main.activity_main.progress_bar as progressBar
 import kotlinx.android.synthetic.main.activity_main.sad_icon as sadIcon

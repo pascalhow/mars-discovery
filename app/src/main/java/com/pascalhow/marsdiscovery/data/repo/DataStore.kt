@@ -12,7 +12,6 @@ import retrofit2.Call
 
 abstract class MarsDataStore(context: Context) {
 
-    val marsFootageList = mutableListOf<MarsFootage>()
     val marsFootageDao: MarsFootageDao
 
     init {
@@ -28,24 +27,22 @@ abstract class MarsDataStore(context: Context) {
     }
 }
 
-//class DiskMarsDataStore(context: Context) : MarsDataStore(context) {
-//
-//    override suspend fun getFootage(planet: String, mediaType: String): Call<List<MarsFootage>> {
-//        return marsFootageDao.getAll()
-//    }
-//}
+class DiskMarsDataStore(context: Context) : MarsDataStore(context) {
+
+    override fun getFootage(planet: String, mediaType: String): List<MarsFootage> {
+        return marsFootageDao.getAll()
+    }
+}
 
 class CloudMarsDataStore(context: Context, private val restClient: RestClient) :
     MarsDataStore(context) {
 
-    override fun getFootage(
-        planet: String,
-        mediaType: String
-    ): List<MarsFootage> {
+    override fun getFootage(planet: String, mediaType: String): List<MarsFootage> {
         return request(
-            restClient.search(planet, mediaType),
-            emptyList()
-        ) { it -> it.map { it.toMarsFootage() } }
+            restClient.search(planet, mediaType), emptyList()
+        ) { itemList ->
+            itemList.map { it.toMarsFootage() }.also { marsFootageDao.insert(it) }
+        }
     }
 
     private fun request(

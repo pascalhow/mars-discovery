@@ -11,7 +11,7 @@ import io.reactivex.Flowable
 interface MarsFootageDao {
 
     @Query("SELECT * FROM MarsFootage ORDER BY id DESC")
-    fun getAll(): Flowable<List<MarsFootage>>
+    fun getAll(): List<MarsFootage>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(marsFootage: List<MarsFootage>)

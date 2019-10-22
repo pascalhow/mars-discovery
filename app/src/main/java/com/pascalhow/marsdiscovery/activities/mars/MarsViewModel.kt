@@ -29,13 +29,7 @@ class MarsViewModel(
         marsFootageListLiveData.postValue(Resource(ResourceState.Loading, null, null))
 
         marsFootageUseCase.execute(UseCase.None) {
-            marsFootageListLiveData.postValue(
-                Resource(
-                    ResourceState.Success,
-                    it,
-                    null
-                )
-            )
+            marsFootageListLiveData.postValue(Resource(ResourceState.Success, it, null))
         }
     }
 

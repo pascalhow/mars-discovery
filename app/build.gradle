@@ -51,6 +51,7 @@ dependencies {
     def constraintLayoutVersion = "1.1.3"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
+    //  Coroutines
     def coroutinesVersion = "1.3.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
@@ -64,15 +65,9 @@ dependencies {
 
     //  Retrofit
     def retrofitVersion = "2.6.0"
-    def rxJavaAdapterVersion = "2.3.0"
     def gsonConverterVersion = "2.5.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxJavaAdapterVersion"
     implementation "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
-
-    //  RxJava
-    def rxJavaVersion = "2.0.2"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
 
     //  Picasso
     def picassoVersion = "2.71828"

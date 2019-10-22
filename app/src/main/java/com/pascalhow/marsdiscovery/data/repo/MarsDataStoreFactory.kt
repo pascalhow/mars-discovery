@@ -10,12 +10,10 @@ class MarsDataStoreFactory(
 ) {
 
     fun create(): MarsDataStore {
-//        return if (networkStatusProvider.hasNetworkConnection()) {
-//            CloudMarsDataStore(context, RestClient)
-//        } else {
-//            DiskMarsDataStore(context)
-//        }
-
-        return CloudMarsDataStore(context, RestClient)
+        return if (networkStatusProvider.hasNetworkConnection()) {
+            CloudMarsDataStore(context, RestClient)
+        } else {
+            DiskMarsDataStore(context)
+        }
     }
 }
